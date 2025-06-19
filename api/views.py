@@ -87,9 +87,38 @@ def studentDetailView(request, pk):
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class Employees(mixins.ListModelMixin,
-                mixins.CreateModelMixin,
-                generics.GenericAPIView):
+#Mixins
+# class Employees(mixins.ListModelMixin,
+#                 mixins.CreateModelMixin,
+#                 generics.GenericAPIView):
+#     queryset = Employee.objects.all()
+#     serializer_class = EmployeeSerializer
+
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
+
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
+    
+
+# class EmployeeDetail(mixins.RetrieveModelMixin,
+#                      mixins.UpdateModelMixin,
+#                      mixins.DestroyModelMixin,
+#                      generics.GenericAPIView):
+#     queryset = Employee.objects.all()
+#     serializer_class = EmployeeSerializer
+
+#     def get(self, request, *args, **kwargs):
+#         return self.retrieve(request, *args, **kwargs)
+
+#     def put(self, request, *args, **kwargs):
+#         return self.update(request, *args, **kwargs)
+
+#     def delete(self, request, *args, **kwargs):
+#         return self.destroy(request, *args, **kwargs)
+
+
+class Employees(generics.ListCreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
@@ -100,10 +129,7 @@ class Employees(mixins.ListModelMixin,
         return self.create(request, *args, **kwargs)
     
 
-class EmployeeDetail(mixins.RetrieveModelMixin,
-                     mixins.UpdateModelMixin,
-                     mixins.DestroyModelMixin,
-                     generics.GenericAPIView):
+class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
@@ -115,6 +141,3 @@ class EmployeeDetail(mixins.RetrieveModelMixin,
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
-
-    
-
