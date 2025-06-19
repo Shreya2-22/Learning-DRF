@@ -8,3 +8,4 @@ def students(request):
         {"name": "Charlie", "age": 21},
     ]
     return HttpResponse(students)
+    
