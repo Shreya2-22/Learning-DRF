@@ -15,4 +15,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('blogs/', views.BlogsView.as_view(), name="blog-list"),
     path('comments/', views.CommentsView.as_view(), name="comment-list"),
+    path('blogs/<int:pk>/', views.BlogDetailView.as_view(), name="blog-detail"),
+    path('comments/<int:pk>/', views.CommentDetailView.as_view(), name="comment-detail"),
 ]
