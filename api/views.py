@@ -10,6 +10,7 @@ from rest_framework import generics, mixins, viewsets
 from django.shortcuts import get_object_or_404
 from blogs.models import Blog, Comment
 from blogs.serializers import BlogSerializer, CommentSerializer
+from .paginations import CustomPagination
 
 
 @api_view(['GET', 'POST'])
@@ -171,6 +172,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     lookup_field = 'pk'
+    pagination_class = CustomPagination
 
 
 class BlogsView(generics.ListCreateAPIView):
